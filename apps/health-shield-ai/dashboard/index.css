@@ -1,0 +1,168 @@
+:root {
+  --primary-color: #00f2ff;
+  --secondary-color: #0072ff;
+  --bg-dark: #0a0e17;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #e0e6ed;
+  --text-dim: #94a3b8;
+  --danger: #ff4d4d;
+  --warning: #ffcc00;
+  --success: #00e676;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 114, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 300px 1fr 350px;
+  gap: 2rem;
+}
+
+/* Glass Card Style */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+/* Sidebar Styling */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-section {
+  text-align: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-color);
+  margin: 0 auto 1rem;
+  background: url('https://api.dicebear.com/7.x/avataaars/svg?seed=Donal') center/cover;
+}
+
+/* Main Dashboard */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cardio-score-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(0, 114, 255, 0.2), rgba(0, 242, 255, 0.1));
+}
+
+.score-display {
+  text-align: center;
+}
+
+.score-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 10px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 30px var(--primary-color);
+}
+
+.score-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+/* Insight Feed */
+.insight-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insight-item {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.insight-item.moderate { border-left-color: var(--warning); }
+.insight-item.high { border-left-color: var(--danger); }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Charts Section */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.chart-placeholder {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-dim);
+  font-style: italic;
+  border: 1px dashed var(--glass-border);
+  border-radius: 10px;
+}
+
+/* Recommendations */
+.rec-list {
+  list-style: none;
+}
+
+.rec-item {
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.rec-item.level-1 { background: rgba(0, 230, 118, 0.1); color: var(--success); }
+.rec-item.level-2 { background: rgba(255, 204, 0, 0.1); color: var(--warning); }
+.rec-item.level-3 { background: rgba(255, 77, 77, 0.1); color: var(--danger); }
