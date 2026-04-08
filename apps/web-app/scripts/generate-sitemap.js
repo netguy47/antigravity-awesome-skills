@@ -97,7 +97,8 @@ export function generateSitemapXml({ baseUrl, paths, lastmod = DEFAULT_LASTMOD }
 
 function readSkillsCatalog() {
   if (!fs.existsSync(SKILLS_JSON)) {
-    throw new Error(`Skills catalog not found at ${SKILLS_JSON}`);
+    console.warn(`[WARN] Skills catalog not found at ${SKILLS_JSON}. Skipping detailed sitemap.`);
+    return null;
   }
 
   const raw = fs.readFileSync(SKILLS_JSON, 'utf-8');
@@ -114,6 +115,8 @@ export function buildSitemap(skills, topCount = TOP_SKILL_COUNT, baseUrl = SITE_
 
 function writeSitemap() {
   const skills = readSkillsCatalog();
+  if (!skills) return;
+
   const xml = buildSitemap(skills, getTopSkillCount(), SITE_URL);
   fs.writeFileSync(OUTPUT_PATH, xml, 'utf-8');
   console.log(`sitemap.xml generated at ${OUTPUT_PATH}`);

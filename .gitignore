@@ -4,6 +4,10 @@ __pycache__/
 .worktrees/
 .tmp/
 .DS_Store
+.env
+.env.*
+*.local
+firebase-key.json
 
 # npm pack artifacts
 antigravity-awesome-skills-*.tgz

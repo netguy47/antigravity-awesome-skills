@@ -132,6 +132,10 @@ Sempre rodar orchestrator antes de responder
 
 ---
 
+## 3. Memoria E Context Agent
+
+Claude Code mantem memoria local do projeto para persistencia entre sessoes.
+
 ## Localizacao Dos Arquivos De Memoria
 
 ```
@@ -190,7 +194,7 @@ Hooks executam comandos automaticamente em eventos do Claude Code.
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -c \\"[Console]::Beep(800,300)\\""
+            "command": "powershell -c \"[Console]::Beep(800,300)\""
           }
         ]
       }
@@ -336,6 +340,10 @@ Ideal para: experimentos, refatoracoes arriscadas, POCs sem risco ao main.
 
 ---
 
+## 7. Permissoes E Seguranca
+
+Claude Code pode ser executado em diferentes niveis de permissao.
+
 ## Configurar Permissoes Por Projeto (.Claude/Settings.Json)
 
 ```json
@@ -371,6 +379,10 @@ NUNCA usar em: producao, repos com segredos, ambientes compartilhados.
 
 ---
 
+## 8. Automacao E Workflows
+
+Claude Code e ideal para workflows autonomos e semi-autonomos.
+
 ## Workflow De Feature Completa (4 Fases)
 
 ```bash
@@ -401,7 +413,7 @@ claude --max-turns 100 "complete o ciclo completo de desenvolvimento da feature 
 ## Script De Inicio De Sessao Produtiva
 
 ```bash
-#\!/bin/bash
+#!/bin/bash
 echo "Carregando contexto do projeto..."
 claude -p "leia memory/MEMORY.md e me da um briefing completo do estado atual"
 ```
@@ -416,10 +428,17 @@ claude -p "leia memory/MEMORY.md e me da um briefing completo do estado atual"
   env:
     ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   run: |
-    claude -p "revise o diff deste PR, identifique bugs e problemas de seguranca" \n      --output-format json \n      --no-stream \n      --max-turns 5
+    claude -p "revise o diff deste PR, identifique bugs e problemas de seguranca" \
+      --output-format json \
+      --no-stream \
+      --max-turns 5
 ```
 
 ---
+
+## 9. Troubleshooting E Logs
+
+Como resolver os problemas mais comuns do Claude Code CLI.
 
 ## Tabela De Problemas Comuns
 
@@ -444,6 +463,10 @@ cat ~/.claude/projects/<hash>/*.jsonl | python -m json.tool
 
 ---
 
+## 10. Configuracoes Ideais (Settings.Json)
+
+Configuracao recomendada para o arquivo de settings global.
+
 ## ~/.Claude/Settings.Json Completo E Recomendado
 
 ```json
@@ -458,7 +481,7 @@ cat ~/.claude/projects/<hash>/*.jsonl | python -m json.tool
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -c \\"[Console]::Beep(800,200); Start-Sleep -Milliseconds 100; [Console]::Beep(1000,200)\\""
+            "command": "powershell -c \"[Console]::Beep(800,200); Start-Sleep -Milliseconds 100; [Console]::Beep(1000,200)\""
           }
         ]
       }
@@ -486,6 +509,10 @@ export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1   # modo privado
 ```
 
 ---
+
+## 11. Integracao Com Agent-Orchestrator
+
+Como Claude Code se integra com as skills Auri para orquestracao.
 
 ## Como Claude Code Se Integra Com As Skills Auri
 
